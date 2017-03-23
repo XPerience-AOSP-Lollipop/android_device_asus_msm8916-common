@@ -1,0 +1,18 @@
+[
+  {
+    "remote": "cm",
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "branch":      "cm-14.1"
+  },
+    {
+    "remote": "Unicorn",
+    "repository": "proprietary_vendor_asus",
+    "target_path": "vendor/asus",
+    "branch":      "xpe-11.1"
+  },
+  {
+    "repository": "android_kernel_asus_msm8916",
+    "target_path": "kernel/asus/msm8916"
+  }
+]
