@@ -32,6 +32,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/sysinfo.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -147,6 +149,17 @@ static void init_alarm_boot_properties()
      }
 }
 
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+
 void vendor_load_properties()
 {
     char b_description[PROP_VALUE_MAX], b_fingerprint[PROP_VALUE_MAX];
@@ -165,12 +178,12 @@ void vendor_load_properties()
     sprintf(p_device, "ASUS_%s", device);
     sprintf(p_carrier, "US-ASUS_%s-WW_%s", device, device);
 
-    property_set("ro.build.product", family);
-    property_set("ro.build.description", b_description);
-    property_set("ro.build.fingerprint", b_fingerprint);
-    property_set("ro.product.carrier", p_carrier);
-    property_set("ro.product.device", p_device);
-    property_set("ro.product.model", p_model);
+    property_override("ro.build.product", family);
+    property_override("ro.build.description", b_description);
+    property_override("ro.build.fingerprint", b_fingerprint);
+    property_override("ro.product.carrier", p_carrier);
+    property_override("ro.product.device", p_device);
+    property_override("ro.product.model", p_model);
 
     property_set("dalvik.vm.heapstartsize", heapstartsize);
     property_set("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
