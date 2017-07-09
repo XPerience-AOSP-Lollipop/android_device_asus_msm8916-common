@@ -167,8 +167,8 @@ BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/i2c-5/5-0038/dclick_mode"
 
 # Vendor Unification Init
-TARGET_INIT_VENDOR_LIB := libinit_msm8916
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
+TARGET_INIT_VENDOR_LIB := libinit_Z00L
+TARGET_RECOVERY_DEVICE_MODULES := libinit_Z00L
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
